@@ -11,7 +11,7 @@ module.exports = {
   async publish(_pkg, tag) {
     try {
       const data = await getAsync(
-        `echo "Publishing version ${tag}"to ${process.env.TARGET_ENVIRONMENT}`
+        `echo "Publishing version ${tag} to ${process.env.TARGET_ENVIRONMENT}"`
       );
       console.log('Publish log', data)
     } catch (err) {
