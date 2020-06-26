@@ -1,5 +1,5 @@
 diff --git a/node_modules/@changesets/cli/dist/cli.cjs.dev.js b/node_modules/@changesets/cli/dist/cli.cjs.dev.js
-index 9797d3b..b723505 100644
+index 9797d3b..5ea240e 100644
 --- a/node_modules/@changesets/cli/dist/cli.cjs.dev.js
 +++ b/node_modules/@changesets/cli/dist/cli.cjs.dev.js
 @@ -669,6 +669,18 @@ async function publishAPackage(pkg, access, twoFactorState, tag) {
@@ -7,7 +7,7 @@ index 9797d3b..b723505 100644
      publishConfig
    } = pkg.packageJson;
 +  if (config.changesets && config.changesets.publish) {
-+    const customPublish = require(config.changesets.publish)
++    const customPublish = require(path.resolve(__dirname, config.changesets.publish))
 +    logger.info(`Running custom deployment step ${chalk.cyan(`"${name}"`)} at ${chalk.green(`"${version}"`)}`);
 +
 +    const customPublishResult = await customPublish.publish(pkg, tag)
@@ -26,7 +26,7 @@ index 9797d3b..b723505 100644
    const results = await Promise.all(packages.map(async pkg => {
      const config = pkg.packageJson;
 +    if (config.changesets && config.changesets.publish) {
-+      const customPublish = require(config.changesets.publish)
++      const customPublish = require(path.resolve(__dirname, config.changesets.publish))
 +
 +      if (customPublish.getPublishState) {
 +        const customPublishState = await customPublish.getPublishState()
