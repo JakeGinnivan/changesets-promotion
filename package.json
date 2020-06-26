@@ -1,0 +1,24 @@
+{
+  "name": "changesets-promotion",
+  "private": true,
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:JakeGinnivan/changesets-promotion.git",
+  "author": "JakeGinnivan <jake@ginnivan.net>",
+  "license": "MIT",
+  "scripts": {
+    "build": "echo \"Build stuff\"",
+    "release": "changesets publish",
+    "changeset": "changeset",
+    "postinstall": "patch-package"
+  },
+  "workspaces": [
+    "./packages/*",
+    "./app"
+  ],
+  "dependencies": {
+    "@changesets/cli": "^2.9.1",
+    "node-cmd": "^3.0.0",
+    "patch-package": "^6.2.2"
+  }
+}

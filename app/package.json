@@ -1,0 +1,15 @@
+{
+  "name": "changesets-promotion-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:JakeGinnivan/changesets-promotion.git",
+  "author": "JakeGinnivan <jake@ginnivan.net>",
+  "license": "MIT",
+  "dependencies": {
+    "changesets-promotion-package-1": "1.0.0",
+    "changesets-promotion-package-2": "1.0.0"
+  },
+  "changesets": {
+    "publish": "./publish.js"
+  }
+}

@@ -1,0 +1,40 @@
+name: Deployment
+on:
+    push:
+        branches:
+            - master
+jobs:
+    up:
+        name: Update
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Set Node.js 12.x
+              uses: actions/setup-node@master
+              with:
+                  node-version: 12.x
+
+            - name: yarn install
+              run: yarn install
+
+            - name: Build
+              run: yarn build
+
+            - name: Deploy to dev
+              id: changesets
+              uses: changesets/action@master
+              with:
+                publish: yarn release
+              env:
+                TARGET_ENVIRONMENT: dev
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Create Release Pull Request or Publish to npm
+              id: changesets
+              uses: changesets/action@master
+              with:
+                publish: yarn release
+              env:
+                TARGET_ENVIRONMENT: prod
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
