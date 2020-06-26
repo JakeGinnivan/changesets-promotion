@@ -1,4 +1,4 @@
-import cmd from 'node-cmd'
+const cmd = require('node-cmd')
 
 const runAsync = Promise.promisify(cmd.run, { multiArgs: true, context: cmd })
  
