@@ -10,6 +10,6 @@
     "changesets-promotion-package-2": "2.0.0"
   },
   "changesets": {
-    "publish": "./publish.js"
+    "publish": "./deploy.js"
   }
 }
