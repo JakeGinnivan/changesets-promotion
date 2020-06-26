@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "build": "echo \"Build stuff\"",
-    "release": "changesets publish",
+    "release": "changeset publish",
     "changeset": "changeset",
     "postinstall": "patch-package"
   },
