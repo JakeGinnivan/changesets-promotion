@@ -22,7 +22,7 @@ jobs:
               run: yarn build
 
             - name: Deploy to dev
-              run: node ./app/deploy.js
+              run: node ./app/deploy-cli.js
               env:
                 TARGET_ENVIRONMENT: dev
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
