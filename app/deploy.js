@@ -1,6 +1,7 @@
 const cmd = require("node-cmd");
+const { promisify } = require('util')
 
-const runAsync = Promise.promisify(cmd.run, { multiArgs: true, context: cmd });
+const runAsync = promisify(cmd.run, { multiArgs: true, context: cmd });
 
 module.exports = {
   async getPublishState() {
