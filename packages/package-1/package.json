@@ -2,6 +2,7 @@
   "name": "changesets-promotion-package-1",
   "version": "2.0.0",
   "main": "index.js",
+  "private": true,
   "repository": "git@github.com:JakeGinnivan/changesets-promotion.git",
   "author": "JakeGinnivan <jake@ginnivan.net>",
   "license": "MIT",

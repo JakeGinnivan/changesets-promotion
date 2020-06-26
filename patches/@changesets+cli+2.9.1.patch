@@ -1,13 +1,13 @@
 diff --git a/node_modules/@changesets/cli/dist/cli.cjs.dev.js b/node_modules/@changesets/cli/dist/cli.cjs.dev.js
-index 9797d3b..a2e40bc 100644
+index 9797d3b..ad89948 100644
 --- a/node_modules/@changesets/cli/dist/cli.cjs.dev.js
 +++ b/node_modules/@changesets/cli/dist/cli.cjs.dev.js
 @@ -669,6 +669,18 @@ async function publishAPackage(pkg, access, twoFactorState, tag) {
      version,
      publishConfig
    } = pkg.packageJson;
-+  if (config.changesets && config.changesets.publish) {
-+    const customPublish = require(path.resolve(pkg.dir, config.changesets.publish))
++  if (pkg.packageJson.changesets && pkg.packageJson.changesets.publish) {
++    const customPublish = require(path.resolve(pkg.dir, pkg.packageJson.changesets.publish))
 +    logger.info(`Running custom deployment step ${chalk.cyan(`"${name}"`)} at ${chalk.green(`"${version}"`)}`);
 +
 +    const customPublishResult = await customPublish.publish(pkg, tag)
