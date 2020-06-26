@@ -1,7 +1,7 @@
 const cmd = require("node-cmd");
 const { promisify } = require('util')
 
-const runAsync = promisify(cmd.run, { multiArgs: true, context: cmd });
+const getAsync = promisify(cmd.get, { multiArgs: true, context: cmd });
 
 module.exports = {
   async getPublishState() {
@@ -10,9 +10,10 @@ module.exports = {
   },
   async publish(_pkg, tag) {
     try {
-      await runAsync(
+      const data = await getAsync(
         `echo "Publishing version ${tag}"to ${process.env.TARGET_ENVIRONMENT}`
       );
+      console.log('Publish log', data)
     } catch (err) {
       console.error("Failed to publish", err);
       return { published: false };
