@@ -22,10 +22,8 @@ jobs:
               run: yarn build
 
             - name: Deploy to dev
-              id: changesets
-              uses: changesets/action@master
               with:
-                publish: yarn release
+                publish: node ./app/deploy.js
               env:
                 TARGET_ENVIRONMENT: dev
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
