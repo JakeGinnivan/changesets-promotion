@@ -21,12 +21,6 @@ jobs:
             - name: Build
               run: yarn build
 
-            - name: Deploy to dev
-              run: node ./app/deploy-cli.js
-              env:
-                TARGET_ENVIRONMENT: dev
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
             - name: Create Release Pull Request or Publish to npm
               id: changesets
               uses: changesets/action@master
@@ -34,4 +28,11 @@ jobs:
                 publish: yarn release
               env:
                 TARGET_ENVIRONMENT: prod
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Deploy to dev (when not prod deploy)
+              if: steps.changesets.outputs.published != 'true'
+              run: node ./app/deploy-cli.js
+              env:
+                TARGET_ENVIRONMENT: dev
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
